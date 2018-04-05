@@ -121,12 +121,19 @@ nav a:focus {
 	height: 50vh;
 	background-size: cover;
 	background-position: center;
+	position: relative;
 }
 
+.about-text{
+	position: absolute;
+	top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
 
 .title-about-me{
 	margin: 0;
-	padding-top: 3rem;
 	font-size: 2rem;
 	font-weight: 700;
 }
@@ -134,19 +141,87 @@ nav a:focus {
 .about-me p{
 	font-size: 1rem;
 	font-weight: 300;
-	width: 95%;
+	width: 80%;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-.between{
-	height: 1rem;
+@media (min-width: 37.5rem){
+	.title-about-me{
+		font-size: 2.5rem;
+	}
+
+	.about-me p{
+		font-size: 1.25rem;
+	}
+}
+
+@media (min-width: 60rem){
+	.title-about-me{
+		font-size: 2.75rem;
+	}
+
+	.about-me p{
+		font-size: 1.5rem;
+	}
+}
+
+@media (min-width: 71.25rem){
+	.title-about-me{
+		font-size: 3rem;
+	}
+
+	.about-me p{
+		font-size: 1.75rem;
+	}
+}
+
+@media (min-width: 53.1rem){
+	.about-me p{
+		
+	width: 70%;
+
+	}
+}
+
+@media (min-width: 98.75rem){
+	.about-me p{
+		
+	width: 60%;
+
+	}
+}
+
+@media (min-width: 110rem){
+	.about-me p{
+		
+	width: 55%;
+
+	}
 }
 
 @media (max-height: 37.5rem){
 	.about-me{
 		height: 60vh;
 	}
+}
+
+@media (max-height: 43.75rem){
+	.about-me{
+		height: 60vh;
+	}
+}
+
+@media (max-height: 34.3rem){
+	.about-me{
+		height: 100vh;
+	}
+}
+
+
+
+.between{
+	height: 1.5rem;
 }
 
 .about-cv{
@@ -157,4 +232,84 @@ nav a:focus {
 	color:black;
 	padding: .4rem 2rem;
 	border: 3px solid black;
+}
+
+@media (min-width: 30rem){
+	.about-cv{
+		font-size: 1.3rem;
+		padding: .4rem 3rem;
+	}
+}
+
+@media (min-width: 45rem){
+	.about-cv{
+		font-size: 1.5rem;
+		border: 4px solid black;
+	}
+}
+
+/* Skills
+===================== */
+
+.skill-home{
+	background-image: url(../img/background-skills.jpg);
+	width: 100%;
+	height: 50vh;
+	background-size: cover;
+	background-position: center;
+	position: relative;
+}
+
+.skills{
+	position: absolute;
+	top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+.skills-title{
+	color: white;
+}
+
+
+.ul-skill{
+	display: inline-block;
+	list-style: none;
+	margin: 2rem 0;
+	padding: 0 3rem;
+}
+
+
+.ul-skill li{
+	text-decoration: none;
+	color: white;
+	font-size: 1.3rem;
+}
+
+@media (min-width: 25rem){
+	.ul-skill li{
+		font-size: 1.45rem;
+	}
+	.skills-title{
+		font-size: 2.3rem;
+	}
+}
+
+@media (min-width: 43.75rem){
+	.ul-skill li{
+		font-size: 1.8rem;
+	}
+	.skills-title{
+		font-size: 2.8rem;
+	}
+}
+
+@media (min-width: 75rem){
+	.ul-skill li{
+		font-size: 2.2rem;
+	}
+	.skills-title{
+		font-size: 3.2rem;
+	}
 }
