@@ -313,3 +313,17 @@ nav a:focus {
 		font-size: 3.2rem;
 	}
 }
+
+
+/* Skills
+===================== */
+
+.portfolio{
+	background-color: gray;
+	padding: 4rem 0;
+}
+
+
+.title-portfolio{
+	color: black;
+}
