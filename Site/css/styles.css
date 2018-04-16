@@ -234,6 +234,12 @@ nav a:focus {
 	border: 3px solid black;
 }
 
+.about-cv:hover,
+.about-cv:focus{
+	color: gray;
+	border: 3px solid gray;
+}
+
 @media (min-width: 30rem){
 	.about-cv{
 		font-size: 1.3rem;
@@ -273,22 +279,32 @@ nav a:focus {
 }
 
 
-.ul-skill{
+.ul-skill-first{
 	display: inline-block;
 	list-style: none;
 	margin: 2rem 0;
+	float: left; 
 	padding: 0 3rem;
 }
 
+.ul-skill-second{
+	display: inline-block;
+	list-style: none;
+	margin: 2rem 0;
+	float: right; 
+	padding: 0 1.1rem;
+}
 
-.ul-skill li{
+.ul-skill-first li,
+.ul-skill-second li{
 	text-decoration: none;
 	color: white;
 	font-size: 1.3rem;
 }
 
 @media (min-width: 25rem){
-	.ul-skill li{
+	.ul-skill-first li,
+	.ul-skill-second li{
 		font-size: 1.45rem;
 	}
 	.skills-title{
@@ -297,7 +313,8 @@ nav a:focus {
 }
 
 @media (min-width: 43.75rem){
-	.ul-skill li{
+	.ul-skill-first li,
+	.ul-skill-second li{
 		font-size: 1.8rem;
 	}
 	.skills-title{
@@ -306,7 +323,8 @@ nav a:focus {
 }
 
 @media (min-width: 75rem){
-	.ul-skill li{
+	.ul-skill-first li,
+	.ul-skill-second li{
 		font-size: 2.2rem;
 	}
 	.skills-title{
@@ -314,6 +332,24 @@ nav a:focus {
 	}
 }
 
+@media(max-width: 22.5rem){
+	.ul-skill-first{
+		padding: 0 0.7rem;
+	}
+	.ul-skill-second{
+		padding: 0 0.1rem;	
+	}
+
+	.skills{
+		width: 80%;
+	}
+}
+
+@media(max-height: 34.3rem){
+	.skill-home{
+		height: 100vh;
+	}	
+}
 
 /* Skills
 ===================== */
