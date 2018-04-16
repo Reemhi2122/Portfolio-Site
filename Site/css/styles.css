@@ -10,6 +10,11 @@ body{
 	text-align: center;
 }
 
+figure{
+	margin: 0;
+	padding: 0;
+}
+
 img {
 	max-width: 100%;
 	height: auto;
@@ -136,6 +141,9 @@ nav a:focus {
 	margin: 0;
 	font-size: 2rem;
 	font-weight: 700;
+	border-bottom: 2px solid black;
+	width: 80%;
+	margin-left: 10%;
 }
 
 .about-me p{
@@ -276,6 +284,7 @@ nav a:focus {
 
 .skills-title{
 	color: white;
+	border-bottom: 2px solid white;
 }
 
 
@@ -355,11 +364,64 @@ nav a:focus {
 ===================== */
 
 .portfolio{
-	background-color: gray;
-	padding: 4rem 0;
+	background-image: url(../img/background-portfolio.jpg);
+	padding: 2.5rem 0 0 0;
+	background-size: cover;
+	background-position: center;
 }
-
 
 .title-portfolio{
 	color: black;
+	margin-bottom: 2rem;
+}
+
+.port-item{
+	position: relative;
+	overflow: hidden;
+}
+
+.port-item img{
+	display: block;
+}
+
+.port-item:hover .port-desc,
+.port-item:focus .port-desc{ 
+	top: 0;
+}
+
+.port-desc{
+	position: absolute;
+	top: 100%;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background: rgba(0, 0, 0, .5);
+	color: white;
+	display: flex;
+	flex-direction: column;
+	transition: top ease-in-out 250ms;
+}
+
+.port-desc-title{
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin: 60% 0 5% 0;
+}
+
+.port-desc-desc{
+	font-size: 1rem;
+	font-weight: 300;
+	margin:0 0 3rem 0;
+}
+
+@supports(display: grid){
+	.portfolio-items {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.featured{
+		grid-column: 1 / span 2;
+		grid-row: 1 / span 2;
+	}
 }
