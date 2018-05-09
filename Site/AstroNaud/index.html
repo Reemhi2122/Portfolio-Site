@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+	  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Portfolio | Chess</title>
+  <meta name="description" content="My Portfolio">
+  <meta name="author" content="Stan Vogels">
+	
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body>
+<header>
+	<nav>
+		<ul>
+			<li><a href="../index.html">HOME</a></li>
+			<li><a href="../index.html #C1">PORTFOLIO</a></li>
+			<li><a href="../index.html #C2">CONTACT</a></li>
+		</ul>
+	</nav>
+</header>
+
+<div class="content">
+
+<!-- Title -->
+<div class="titleplaceholder">
+	<h1 class="title">AstroNaud</h1>
+</div>
+
+<!-- Project information -->
+<div class="front-info">
+	<p class="front-info-text">I have made this game in Unity3D using Visual Studio C#. This game is a jumping game with a little twist. You have to climb on platforms and get as high as possible while avoiding enemys. But to get the actual points you need to return to the home ship at the bottom. This game is made for a arcade machine</p>
+</div>
+
+<div class="front-image">
+	<img class="front-image-image" src="img/AstroNaud.jpg">
+</div>	
+
+<div class="normal-info">
+	<p class="normal-info-text">This is a simple movement script for the game. It had to work with the animations and to make the player turn. also jumping needed to be perfect so it wouldn't be annoying. but you shouldn't be able to double jump.</p>
+</div>
+
+<video class="video" controls="" autoplay="">
+	<source src="gif/walking.mp4" type="video/mp4">
+</video>
+
+<pre class="precode"><code class="code">void Update()
+{
+    float horizontal = Input.GetAxis("Horizontal");
+
+    transform.Translate(horizontal * speed * Time.deltaTime, 0f, 0f);
+    
+    animator.SetBool("Iswalking", (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)));
+
+    mySrpiterenderer.flipX = (horizontal < 0);
+
+    if (rb.velocity.y <= 0.05f && rb.velocity.y >= -0.05f)
+        if (Input.GetButtonDown("Jump"))
+            rb.AddForce(new Vector3(0f, jumpSpeed, 0f), ForceMode2D.Impulse);
+
+    if (transform.position.x < -9)
+        transform.position = new Vector3(9, transform.position.y, transform.position.z);
+
+    if (transform.position.x > 9)
+        transform.position = new Vector3(-9, transform.position.y, transform.position.z);
+
+    if (health == 0)
+        SceneManager.LoadScene("GameOverScreen");
+}
+</code></pre>
+
+<div class="normal-info">
+	<p class="normal-info-text">After the movement was done. I made a random spawner for the tiles. I had a hard time making this correct because I had to make sure the actual player could reach every tile. The code I show you are for the power-up tiles. This function gets called everytime the player gets near the end. It calculates if it should make a normal, powerup or enemy tile.</p>
+</div>
+
+<div class="front-image">
+	<img class="front-image-image" src="img/tiles.png">
+</div>
+
+<pre class="precode"><code class="code">void Spawner()
+{
+    for (int i = 100; i > 0; i--)
+    {
+        int special = Random.Range(1, 100);
+        if (special <= 10)
+        {
+            GameObject cloneP = Instantiate(platformP, new Vector3(Random.Range(-7.21f, 7.16f), spawnP.position.y, 0), Quaternion.identity);
+            cloneP.name = "Tile" + tileNumber;
+            tileNumber++;
+            float posP = cloneP.transform.position.x;
+            if (posP > 4.5f || posP < -4.5f)
+            {
+                GameObject cloneX = Instantiate(platform, new Vector3(Random.Range(-1f, 1f), spawnP.position.y, 0), Quaternion.identity);
+                cloneX.name = "Tile" + tileNumber;
+                transform.Translate(0f, 3f, 0f);
+            }
+            else
+                transform.Translate(0f, 3f, 0f);
+        }
+    }
+}
+</code></pre>
+
+<div class="normal-info">
+	<p class="normal-info-text">The background is next to be spawned behind it. What I did was adding an array of game objects that I filled with 5 different backgrounds. In the for loop, it takes one of those random and places it. renames the background to order and places the next one 10 units higher. This was not that hard but I learned a lot from this back then.</p>
+</div>
+
+<div class="front-image">
+	<img class="front-image-image" src="img/backgrounds.png">
+</div>
+
+<pre class="precode"><code class="code">void FixedUpdate()
+{
+    if (Camera.main.transform.position.y > distance)
+    {
+        SpawnerBG();
+        distance += 294;
+    }
+}
+
+public void SpawnerBG()
+{
+    for (int i = 30; i > 0; i--)
+    {
+        bgNumber++;
+        GameObject clone = Instantiate(bg[Random.Range(1, 5)], new Vector3(transform.position.x, transform.position.y + thispos, transform.position.z), Quaternion.identity);
+        clone.name = "bg" + bgNumber;
+        thispos += 10;
+    }
+}
+</code></pre>
+
+<div class="normal-info">
+	<p class="normal-info-text">And this is how the score gets saved and shown.  On the very first start of this game on your pc. Everything is zero. But when you close the game and start it up again. Everything gets saved. Every time you get a score higher than the fifth high score. It will put you in that place and sort the list. This is also a part where I learned a lot. That's why I wanted this on my portfolio. Back then I learned so much of this game.</p>
+</div>
+
+<pre class="precode"><code class="code">if (CameraScript.score > myHighScore[0])
+{
+    myHighScore[0] = CameraScript.score;
+
+
+    Array.Sort(myHighScore);
+
+    int count = 1;
+    foreach (Text text in leadertext)
+    {
+        text.text = count.ToString() + ": " + myHighScore[5 - count];
+
+        if (count == 5)
+            count = 1;
+
+        count++;
+    }
+
+    for (int i = 1; i < 6; i++)
+    PlayerPrefs.SetInt("HG" + i.ToString(), myHighScore[5 -i]);
+}
+</code></pre>
+
+</div>
+
+</body>
+</html>
